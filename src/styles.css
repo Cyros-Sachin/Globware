@@ -1,0 +1,179 @@
+/* Login.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #4facfe;
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(79, 172, 254, 0.5);
+}
+
+button {
+  background: #4facfe;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background: #00c6ff;
+}
+
+p {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+/* UsersList.css */
+/* styles.css */
+
+/* 🔹 General Reset */
+
+/* 🔹 Main Container */
+.users-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 🔹 User Card Styling */
+.user-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.user-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user-card h3 {
+  color: #333;
+  margin: 10px 0;
+}
+
+.user-card p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* 🔹 Buttons Inside Cards */
+.user-card .buttons {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  gap: 10px; /* Space between buttons */
+  margin-top: 15px;
+}
+
+.user-card button {
+  background: #4facfe;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.user-card button:hover {
+  background: #00c6ff;
+  transform: scale(1.05);
+}
+
+/* 🔹 Delete Button */
+.delete-button {
+  background: #ff4f4f !important;
+}
+
+.delete-button:hover {
+  background: #ff2e2e !important;
+}
+
+/* 🔹 Pagination Styling */
+.pagination-container {
+  display: flex;
+  justify-content: center; /* Center align the buttons */
+  align-items: center;
+  gap: 50px; /* Space between buttons */
+}
+
+.pagination-container button {
+  background: #4b8674;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: max-content;
+}
+
+.pagination-container button:hover {
+  background: #42e85b;
+  transform: scale(1.1);
+}
+
+.pagination-container button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
