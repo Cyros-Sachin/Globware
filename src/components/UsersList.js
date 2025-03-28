@@ -12,18 +12,30 @@ const UsersList = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://reqres.in/api/users?page=${page}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data.data);
-        setFilteredUsers(data.data); // ✅ Initially, show all users
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-        setLoading(false);
-      });
+
+    // ✅ Check localStorage first
+    const savedUsers = JSON.parse(localStorage.getItem("users"));
+
+    if (savedUsers && savedUsers.length > 0) {
+      console.log("Loading users from localStorage:", savedUsers);
+      setUsers(savedUsers);
+      setLoading(false);
+    } else {
+      fetch(`https://reqres.in/api/users?page=${page}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Fetched users from API:", data.data);
+          setUsers(data.data);
+          localStorage.setItem("users", JSON.stringify(data.data)); // ✅ Save users to localStorage
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+          setLoading(false);
+        });
+    }
   }, [page]);
+
 
   // ✅ Search Functionality
   useEffect(() => {
@@ -36,11 +48,7 @@ const UsersList = () => {
     setFilteredUsers(filtered);
   }, [search, users]);
 
-  const updateUser = (updatedUser) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) => (user.id === updatedUser.id ? updatedUser : user))
-    );
-  };
+  
 
   const deleteUser = (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
@@ -69,9 +77,16 @@ const UsersList = () => {
               <h3>{user.first_name} {user.last_name}</h3>
               <p>{user.email}</p>
               <div className="buttons">
-                <button onClick={() => navigate(`/edit/${user.id}`, { state: { user, updateUser } })}>
+                <button
+                  onClick={() => {
+                    console.log("Editing User:", user); // Debugging Log
+                    localStorage.setItem("editUser", JSON.stringify(user)); // ✅ Save user in localStorage
+                    navigate(`/edit/${user.id}`); // ✅ Navigate to edit page
+                  }}
+                >
                   Edit
                 </button>
+
                 <button className="delete-button" onClick={() => deleteUser(user.id)}>
                   Delete
                 </button>
